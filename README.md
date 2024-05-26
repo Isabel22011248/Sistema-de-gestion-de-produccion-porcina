@@ -1,5 +1,4 @@
-#Ingeniería en Tecnologías de la Información y Comunicaciones
-![image](https://github.com/Isabel22011248/Sistema-de-gestion-de-produccion-porcina/assets/152207664/5af4642b-4132-41c5-b7a8-e98164edff83)
+## Sistema de gestión de producción porcina
 
 
 
