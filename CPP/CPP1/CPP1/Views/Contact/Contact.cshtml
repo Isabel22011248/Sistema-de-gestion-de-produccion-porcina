@@ -1,0 +1,56 @@
+﻿@model CPP1.Models.ContactViewModel
+
+@{
+    ViewData["Title"] = "Formulario de contacto";
+}
+
+<div style="display: flex;">
+    <div style="background-color: white; padding: 10px;">
+        <h2>Contactanos</h2>
+        <p><strong><h5>Horario:</h5></strong></p>
+        <p><h5>Lunes a Viernes: 08:30h. a 13:30h y de 16.30h a 19.00h.</h5></p>
+        <p><h5>Sábados: 09:00h a 13:30h.</h5></p>
+
+        <h5>
+        <p>April Milagros Falcon Caracas</p>
+        <p><strong>Correo:</strong><a href="mailto:22011797@itsoeh.edu.mx">22011797@itsoeh.edu.mx</a></p>
+        <p>Maria Isabel Olguin Zenil</p>
+        <p><strong>Correo:</strong><a href="mailto:22011797@itsoeh.edu.mx">22011248@itsoeh.edu.mx</a></p>
+       
+    </div>
+
+    <div class="embed-responsive embed-responsive-16by9" style="flex-grow: 1; margin-left: 10px;">
+        <iframe class="embed-responsive-item" src="https://acortar.link/f1rhHr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
+
+<h1>@ViewData["Title"]</h1>
+
+@if (ViewData["MessageSend"] != null)
+{
+    <p>Detalles del correo:</p>
+    <pre>@ViewData["MessageSend"]</pre>
+}
+
+@using (Html.BeginForm("Send", "Contact", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CorreoElectronico)
+        @Html.TextBoxFor(model => model.CorreoElectronico, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CorreoElectronico)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mensaje)
+        @Html.TextAreaFor(model => model.Mensaje, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Mensaje)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirmar</button>
+}

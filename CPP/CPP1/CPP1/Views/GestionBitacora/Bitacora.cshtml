@@ -1,0 +1,90 @@
+﻿@model List<CPP1.Models.BitacoraCorral>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Corrales</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Bitacora_Detalle" asp-controller="GestionBitacora" asp-route-idbitacora="0">Registro</a>
+        @* <a class="btn btn-primary btn-sm" id="btnGenerarPDF">Generar PDF</a> *@
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No.Renglon </th>
+                    <th>No.Corral </th>
+                    <th>Tamaño</th>
+                    <th>Alimento</th>
+                    <th>Cantidad</th>
+                    <th>Fecha de registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Idbitacora</td>
+                        <td>@item.Idcorral</td>
+                        <td>@item.oCerdo.Tamaño</td>
+                        <td>@item.oAlimento.Nombre</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.FechaRegistro.ToString("yy/MM/dd")</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="Bitacora_Detalle" asp-controller="GestionBitacora" asp-route-idbitacora="@item.Idbitacora"> Editar</a>
+                        </td>
+                    </tr>
+
+
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#buscarDescripcion').on('keyup', function () {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("buscarDescripcion");
+                filter = input.value.toUpperCase();
+                table = document.getElementsByTagName("table")[0];
+                tr = table.getElementsByTagName("tr");
+
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[6];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+
+            // Evitar la propagación de eventos en el teclado en el campo de búsqueda
+            $('#buscarDescripcion').on('keydown', function (event) {
+                event.stopImmediatePropagation();
+            });
+
+            $('#btnGenerarPDF').click(function () {
+                // Redirige al controlador para generar el PDF
+                window.location.href = '/GestionBitacora/Bitacora';
+            });
+        });
+    </script>
+}

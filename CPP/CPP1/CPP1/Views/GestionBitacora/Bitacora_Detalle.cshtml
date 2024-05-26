@@ -1,0 +1,92 @@
+﻿@model CPP1.Models.ViewModels.CorralVM
+@{
+    ViewData["Title"] = "Bitacora_Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.oBitacora.Idbitacora == 0)
+{
+
+    <h1>Agregar Bitacora</h1>
+}
+else
+{
+    <h1>Editar Bitacora</h1>
+}
+
+
+<div class="row">
+    <div class="col-sm-4">
+
+        <form asp-action="Bitacora_Detalle" asp-controller="GestionBitacora" method="post">
+            <input type="hidden" asp-for="oBitacora.Idbitacora" />
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.oCerdo.Idcerdo">Porcino</label>
+                <select class="form-select form-select-sm" asp-for="oBitacora.Idcerdo" asp-items="@Model.oListaCerdo">
+                    <option selected disabled>-- Seleccionar --</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.Idcorral">No.Corral</label>
+                <select class="form-select form-select-sm" asp-for="oBitacora.Idcorral">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.oAlimento.Nombre">Alimento</label>
+                <select class="form-control form-control-sm" asp-for="oBitacora.oAlimento.Nombre">
+                    <option value="Pienso Balanceado">Pienso Balanceado</option>
+                    <option value="Ensilado de Maíz">Ensilado de Maíz</option>
+                    <option value="Lactosucedáneo">Lactosucedáneo</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.oCerdo.Tamaño">Tamaño</label>
+                <select class="form-select form-select-sm" asp-for="oBitacora.oCerdo">
+                    <option value="Lechon">Lechon</option>
+                    <option value="Crecimiento">Crecimiento</option>
+                    <option value="Engorda">Engorda</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.Cantidad">Cantidad</label>
+                <input class="form-control form-control-sm" asp-for="oBitacora.Cantidad" type="text" />
+            </div>
+
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oBitacora.FechaRegistro">Fecha de registro</label>
+                <input class="form-control form-control-sm" asp-for="oBitacora.FechaRegistro" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            </div>
+
+
+            <div class="mb-2">
+
+                @if (Model.oBitacora.Idbitacora == 0)
+                {
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Crear</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+
+                }
+                <a class="btn btn-dark btn-sm" asp-action="Bitacora" asp-controller="GestionBitacora">Volver</a>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

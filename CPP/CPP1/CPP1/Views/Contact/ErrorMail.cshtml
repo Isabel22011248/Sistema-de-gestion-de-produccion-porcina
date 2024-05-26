@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "ErrorMail";
+}
+
+<h1>Error</h1>
+
+<p>Se produjo un error al enviar el correo electrónico. Por favor, intenta nuevamente más tarde.</p>
+
+@if (ViewData["ErrorDetails"] != null)
+{
+    <p>Detalles del error:</p>
+    <pre>@ViewData["ErrorDetails"]</pre>
+}
+
+<p>Si el problema persiste, ponte en contacto con el administrador del sitio.</p>

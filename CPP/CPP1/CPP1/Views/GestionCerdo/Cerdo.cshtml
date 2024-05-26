@@ -1,0 +1,46 @@
+﻿@model List<CPP1.Models.Cerdo>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5>Cerdos</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Cerdo_Detalle" asp-controller="GestionCerdo" asp-route-idcerdo="0">Registro</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identificacion de Porcino </th>
+                    <th>Tamaño</th>
+                    <th>Fecha de ingreso</th>
+                    <th>Fecha de salida</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Idcerdo</td>
+                        <td>@item.Tamaño</td>
+                        <td>@item.FechaIngreso.ToString("yy/MM/dd")</td>
+                        <td>@item.FechaSalida.ToString()</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="Cerdo_Detalle" asp-controller="GestionCerdo" asp-route-idcerdo="@item.Idcerdo"> Editar</a>
+                        </td>
+                    </tr>
+
+
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
